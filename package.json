@@ -17,6 +17,8 @@
     "react-router-dom": "^5.1.2",
     "styled-components": "^4.4.1",
     "styled-theming": "^2.2.0",
+    "svg-path-bounding-box": "^1.0.4",
+    "svgpath": "^2.2.2",
     "xmldom": "^0.1.27"
   },
   "scripts": {
@@ -72,6 +74,7 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-find-rules": "^2.2.0",
-    "stylelint-processor-styled-components": "^1.8.0"
+    "stylelint-processor-styled-components": "^1.8.0",
+    "svgson": "^4.0.0"
   }
 }

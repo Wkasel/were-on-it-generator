@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+      <svg
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns="http://www.w3.org/2000/svg"
+         version="1.1"
+         width="13.399999999999977px"
+         height="16.000000000000057px"
+         id="svg-RI">
+        <defs
+           id="defs-RI" />
+        <!--
+          Bounds: {"minX":871.2,"x1":871.2,"minY":163.79999999999998,"y1":163.79999999999998,"maxX":884.6,"x2":884.6,"maxY":179.80000000000004,"y2":179.80000000000004,"width":13.399999999999977,"height":16.000000000000057}
+        -->
+        <g
+           transform="translate(13.399999999999977,16.000000000000057)"
+           id="state-layer">
+          <path id="RI" d="M873.6 175.7l-.8-4.4-1.6-6 5.7-1.5 1.5 1.3 3.4 4.3 2.8 4.4-2.8 1.4-1.3-.2-1.1 1.8-2.4 1.9-2.8 1.1z"></path>
+        </g>
+      </svg>

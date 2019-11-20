@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+  width="50%" height="50%"
+  id="svg-WY"
+  viewBox="0 0 100 100"
+  >
+  <defs
+    id="defs-WY">
+    <style type="text/css">
+      .scaled-path-svg {
+  svg {
+    path {
+      transform-origin: center;
+      transform: scale(1.1);
+    }
+  }
+}
+    </style>
+  </defs>
+    <g
+      transform="translate(-245,-131) scale(1)"
+      id="state-layer">
+      <path id="WY" d="M353 161.9l-1.5 25.4-4.4 44-2.7-.3-83.3-9.1-27.9-3 2-12 6.9-41 3.8-24.2 1.3-11.2 48.2 7 59.1 6.5z"></path>
+    </g>
+  </svg>
