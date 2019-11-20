@@ -1,19 +1,26 @@
 import React from 'react';
-// import Canvg from 'canvg';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
 import theme from 'styled-theming';
+import styled, { ThemeProvider } from 'styled-components';
 
-import { Svg } from '../../components/Svg';
+import { Svg } from '../Svg';
 
 const backgroundColor = theme('mode', {
   light: '#fafafa',
-  dark: '#222'
+  dark: '#222',
+  inverse: '#f0c174'
 });
 
 const textColor = theme('mode', {
   light: '#000',
-  dark: '#fff'
+  dark: '#fff',
+  inverse: '#fff'
+});
+
+const stateColor = theme('mode', {
+  light: '#ff00ff',
+  dark: '#f0f',
+  inverse: '#fff'
 });
 
 const Wrapper = styled.div`
@@ -22,8 +29,8 @@ const Wrapper = styled.div`
 `;
 
 const WereOnItWrapper = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 550px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 50px;
@@ -33,7 +40,7 @@ const WereOnItWrapper = styled.div`
 const LogoType = styled.span`
   font-size: 120px;
   line-height: 100px;
-  color: #000;
+  color: ${textColor};
   z-index: 100;
   width: 100%;
   position: absolute;
@@ -48,16 +55,24 @@ const LogoType = styled.span`
 // const text = { l1: `Meth.`, l2: `We're On It.` };
 
 const StyledSvg = styled(Svg)`
-  /* background-color: #ff00dd; */
+  background-color: ${stateColor};
+  color: ${textColor};
+
+  path {
+    background-color: ${stateColor};
+  }
+  #SD_At-Large {
+    background-color: ${stateColor};
+  }
 `;
 
 const LogoComponent = props => {
-  const { textL1, textL2 } = props;
+  const { textL1, textL2, themeName } = props;
   return (
-    <ThemeProvider theme={{ mode: 'dark' }}>
+    <ThemeProvider theme={{ mode: themeName }}>
       <Wrapper>
         <WereOnItWrapper>
-          <LogoType>
+          <LogoType widthOnly minFontSize={80}>
             {textL1}
             <br />
             {textL2}
@@ -67,7 +82,6 @@ const LogoComponent = props => {
             width="100%"
             height="100%"
             className="sd_logo"
-            style={{ fill: '#f0c174' }}
           />
         </WereOnItWrapper>
       </Wrapper>
@@ -77,12 +91,14 @@ const LogoComponent = props => {
 
 LogoComponent.propTypes = {
   textL1: PropTypes.string,
-  textL2: PropTypes.string
+  textL2: PropTypes.string,
+  themeName: PropTypes.string
 };
 
 LogoComponent.defaultProps = {
   textL1: 'Meth.',
-  textL2: `Were on it.`
+  textL2: `Were on it.`,
+  themeName: 'inverse'
 };
 
 export default LogoComponent;

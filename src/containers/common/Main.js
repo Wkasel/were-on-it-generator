@@ -1,19 +1,18 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import { Build } from '../Build';
+import { Home } from '../Home';
 import { Share } from '../Share';
 import { View } from '../View';
+import { About } from '../About';
 
 const Main = () => (
   <main>
-    <Container>
-      <Switch>
-        <Route exact path="/" component={Build} />
-        <Route path="/share" component={Share} />
-        <Route path="/view" component={View} />
-      </Switch>
-    </Container>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/share" component={Share} />
+      <Route path="/create" component={View} />
+      <Route path="/about" component={About} />
+    </Switch>
   </main>
 );
 

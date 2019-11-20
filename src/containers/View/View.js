@@ -1,8 +1,9 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import html2canvas from 'html2canvas';
-import LogoComponent from './LogoComponent';
+import { Redirect } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import LogoComponent from '../../components/LogoComponent';
 
 class View extends React.Component {
   constructor() {
@@ -13,7 +14,6 @@ class View extends React.Component {
     };
 
     this.captureRef = React.createRef();
-    this.displayRef = React.createRef();
   }
 
   handleChangeL1 = event => {
@@ -24,79 +24,80 @@ class View extends React.Component {
     this.setState({ textL2: event.target.value });
   };
 
-  saveAs = (uri, filename) => {
-    const link = document.createElement('a');
-    if (typeof link.download === 'string') {
-      link.href = uri;
-      link.download = filename;
+  generateShareLink = () => {
+    const { textL1, textL2 } = this.state;
+    const tmpl = `/share?l1=${encodeURI(textL1)}&l2=${encodeURI(textL2)}`;
 
-      // Firefox requires the link to be in the body
-      document.body.appendChild(link);
-
-      // simulate click
-      link.click();
-
-      // remove the link when done
-      document.body.removeChild(link);
-    } else {
-      window.open(uri);
-    }
-  };
-
-  getScreenshotHandler = () => {
-    html2canvas(this.captureRef.current).then(
-      canvas =>
-        this.saveAs(
-          canvas
-            .toDataURL('image/jpeg')
-            .replace('image/jpeg', 'image/octet-stream'),
-          'were-on-it-generator.jpg'
-        )
-      // console.log(canvas)
-    );
+    this.setState({ redirect: tmpl });
   };
 
   render() {
-    const { textL1, textL2 } = this.state;
+    const { textL1, textL2, redirect, themeInvert } = this.state;
+    if (redirect) {
+      return <Redirect to={redirect} />;
+    }
     return (
       <>
-        <Form>
-          <Form.Group controlId="formBasicLine1">
-            <Form.Label>Text Line 1</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Meth."
-              value={textL1}
-              onChange={this.handleChangeL1}
-            />
-          </Form.Group>
+        <Container>
+          <Form>
+            <Form.Group controlId="formBasicLine1">
+              <Form.Label>Text Line 1</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Meth."
+                value={textL1}
+                key="create-textL1"
+                onChange={this.handleChangeL1}
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formBasicLine2">
-            <Form.Label>Text Line 2</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="We're on it."
-              value={textL2}
-              onChange={this.handleChangeL2}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Invert Colors" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-        <br />
-        <Button onClick={this.getScreenshotHandler}>Get Screenshot!</Button>
+            <Form.Group controlId="formBasicLine2">
+              <Form.Label>Text Line 2</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="We're on it."
+                value={textL2}
+                key="create-textL2"
+                onChange={this.handleChangeL2}
+              />
+            </Form.Group>
+
+            <Button
+              variant="outline-dark"
+              type="submit"
+              onClick={this.generateShareLink}
+            >
+              Share this link with friends!
+            </Button>
+          </Form>
+          <br />
+        </Container>
         <br />
         <div ref={this.captureRef}>
-          <LogoComponent textL1={textL1} textL2={textL2} />
+          <LogoComponent
+            textL1={textL1}
+            textL2={textL2}
+            themeName={themeInvert ? 'dark' : 'inverse'}
+          />
         </div>
-        <div ref={this.displayRef} />
       </>
     );
   }
 }
 
 export { View };
+
+// Fix bugs and come back to it later
+// handleThemeChange = event => {
+//   this.setState({ themeInvert: event.target.checked });
+//   console.log(this.state);
+// };
+// const Checkbox = props => (
+// <Form.Check type="checkbox" label="Invert Colors" {...props} />
+// );
+// <Form.Group controlId="formBasicCheckbox">
+//   <Checkbox
+//     checked={this.state.themeInvert}
+//     onChange={this.handleThemeChange}
+//   />
+// </Form.Group>
